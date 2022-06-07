@@ -1,0 +1,23 @@
+{
+  "name": "my-web-server",
+  "version": "1.0.0",
+  "description": "A school assignment ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcusBYUI/CSE-341.git"
+  },
+  "author": "Ojo-Osasere Ayodeji Marcus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcusBYUI/CSE-341/issues"
+  },
+  "homepage": "https://github.com/MarcusBYUI/CSE-341#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
