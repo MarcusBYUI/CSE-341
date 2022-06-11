@@ -1,4 +1,4 @@
-GET https://cse341-personal-assignment1.herokuapp.com/contact 
+GET https://cse341-personal-assignment1.herokuapp.com 
 # the request above will return my name, No database connection
 
 GET https://cse341-personal-assignment1.herokuapp.com/contact 
