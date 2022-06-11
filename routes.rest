@@ -1,4 +1,7 @@
 GET https://cse341-personal-assignment1.herokuapp.com/contact 
+# the request above will return my name, No database connection
+
+GET https://cse341-personal-assignment1.herokuapp.com/contact 
 # the request above returns a list containing 3 JSON objects which has demo contacts belonging to my friends from the database
 
 GET https://cse341-personal-assignment1.herokuapp.com/contact/62a4efb855d9e0fee0c0334c
