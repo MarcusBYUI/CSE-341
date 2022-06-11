@@ -14,6 +14,7 @@ app
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
   })
+  .use("/", require("./routes"))
   .use("/contact", contactRoutes);
 
 mongodb.initDb((err, mongodb) => {
