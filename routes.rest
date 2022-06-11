@@ -1,0 +1,11 @@
+GET https://cse341-personal-assignment1.herokuapp.com/contact 
+# the request above returns a list containing 3 JSON objects which has demo contacts belonging to my friends from the database
+
+GET https://cse341-personal-assignment1.herokuapp.com/contact/62a4efb855d9e0fee0c0334c
+# the request above returns a JSON objects of my friends contact that has the id of 62a4efb855d9e0fee0c0334c from the database
+
+GET https://cse341-personal-assignment1.herokuapp.com/contact/62a4efce55d9e0fee0c0334d
+# the request above returns a JSON objects of my friends contact that has the id of 62a4efce55d9e0fee0c0334d from the database
+
+GET https://cse341-personal-assignment1.herokuapp.com/contact/62a4efe055d9e0fee0c0334e
+# the request above returns a JSON objects of my friends contact that has the id of 62a4efe055d9e0fee0c0334e from the database
