@@ -18,7 +18,7 @@ const getData = async (req, res, next) => {
 };
 
 const getDataById = async (req, res, next) => {
-  const id = req.query.id;
+  const id = req.params.id;
   if (isValidObjectId(id)) {
     const result = await mongodb
       .getDb()
@@ -36,4 +36,5 @@ const getDataById = async (req, res, next) => {
   }
 };
 
-module.exports = { getData, getDataById };
+module.exports.Data = getData;
+module.exports.DataById = getDataById;
