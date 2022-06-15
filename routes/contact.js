@@ -8,4 +8,10 @@ router.get("/", contactController.Data);
 
 router.get("/:id", contactController.DataById);
 
+router.post("/", contactController.addContact);
+
+router.put("/:id", contactController.updateContact);
+
+router.delete("/:id", contactController.deleteDocById);
+
 module.exports = router;
