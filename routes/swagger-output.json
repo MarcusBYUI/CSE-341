@@ -60,7 +60,7 @@
                   "example": "any"
                 },
                 "age": {
-                  "example": "any"
+                  "example": 10
                 },
                 "location": {
                   "example": "any"
@@ -133,7 +133,7 @@
                   "example": "any"
                 },
                 "age": {
-                  "example": "any"
+                  "example": 10
                 },
                 "location": {
                   "example": "any"
