@@ -7,9 +7,7 @@
   },
   "host": "https://cse341-personal-assignment1.herokuapp.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
@@ -22,19 +20,11 @@
         }
       }
     },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
+
     "/contacts/": {
       "get": {
         "description": "Returns all contacts from the database",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
