@@ -5,9 +5,9 @@
     "description": "This is the API documentation for the Contacts API application",
     "version": "1.0.0"
   },
-  "host": "https://cse341-personal-assignment1.herokuapp.com",
+  "host": "cse341-personal-assignment1.herokuapp.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
