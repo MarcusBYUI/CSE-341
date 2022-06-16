@@ -56,38 +56,42 @@ const insertContact = async (req, res) => {
 
 */
 
-  const document = {};
+  if (
+    typeof req.body.firstName !== "undefined" &&
+    typeof req.body.lastName !== "undefined" &&
+    typeof req.body.email !== "undefined" &&
+    typeof req.body.favoriteColor !== "undefined" &&
+    typeof req.body.birthday !== "undefined"
+  ) {
+    const document = {};
+    document["firstName"] = req.body.firstName;
+    document["lastName"] = req.body.lastName;
+    document["email"] = req.body.email;
+    document["favoriteColor"] = req.body.favoriteColor;
+    document["birthday"] = req.body.birthday;
+    // Optional addtional info
+    typeof req.body.nickName !== "undefined"
+      ? (document["nickName"] = req.body.nickName)
+      : (document["nickName"] = "Not Provided");
+    typeof req.body.age !== "undefined"
+      ? (document["age"] = req.body.age)
+      : (document["age"] = "Not Provided");
+    typeof req.body.location !== "undefined"
+      ? (document["location"] = req.body.location)
+      : (document["location"] = "Not Provided");
 
-  //set only receibed values to be updated
-  typeof req.body.firstName !== "undefined" &&
-    (document["firstName"] = req.body.firstName);
-  typeof req.body.lastName !== "undefined" &&
-    (document["lastName"] = req.body.lastName);
-  typeof req.body.email !== "undefined" && (document["email"] = req.body.email);
-  typeof req.body.favoriteColor !== "undefined" &&
-    (document["favoriteColor"] = req.body.favoriteColor);
-  typeof req.body.birthday !== "undefined" &&
-    (document["birthday"] = req.body.birthday);
-  typeof req.body.nickName !== "undefined" &&
-    (document["nickName"] = req.body.nickName);
-  typeof req.body.age !== "undefined" && (document["age"] = req.body.age);
-  typeof req.body.location !== "undefined" &&
-    (document["location"] = req.body.location);
-
-  //if no value was sent in req
-  if (Object.keys(document).length === 0) {
+    try {
+      const result = await mongodb
+        .getDb()
+        .db()
+        .collection("contacts")
+        .insertOne(document);
+      res.send(result.insertedId);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
     res.status(400).send("All fields are required");
-    return;
-  }
-  try {
-    const result = await mongodb
-      .getDb()
-      .db()
-      .collection("contacts")
-      .insertOne(document);
-    res.send(result.insertedId);
-  } catch (error) {
-    console.log(error);
   }
 };
 
@@ -110,11 +114,15 @@ const updateContact = async (req, res) => {
     (document["favoriteColor"] = req.body.favoriteColor);
   typeof req.body.birthday !== "undefined" &&
     (document["birthday"] = req.body.birthday);
-  typeof req.body.nickName !== "undefined" &&
-    (document["nickName"] = req.body.nickName);
-  typeof req.body.age !== "undefined" && (document["age"] = req.body.age);
-  typeof req.body.location !== "undefined" &&
-    (document["location"] = req.body.location);
+  typeof req.body.nickName !== "undefined"
+    ? (document["nickName"] = req.body.nickName)
+    : (document["nickName"] = "Not Provided");
+  typeof req.body.age !== "undefined"
+    ? (document["age"] = req.body.age)
+    : (document["age"] = "Not Provided");
+  typeof req.body.location !== "undefined"
+    ? (document["location"] = req.body.location)
+    : (document["location"] = "Not Provided");
   //if no value was sent in req
   if (Object.keys(document).length === 0) {
     res.status(400).send("Data to update needs to be provided");
