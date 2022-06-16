@@ -114,15 +114,11 @@ const updateContact = async (req, res) => {
     (document["favoriteColor"] = req.body.favoriteColor);
   typeof req.body.birthday !== "undefined" &&
     (document["birthday"] = req.body.birthday);
-  typeof req.body.nickName !== "undefined"
-    ? (document["nickName"] = req.body.nickName)
-    : (document["nickName"] = "Not Provided");
-  typeof req.body.age !== "undefined"
-    ? (document["age"] = req.body.age)
-    : (document["age"] = "Not Provided");
-  typeof req.body.location !== "undefined"
-    ? (document["location"] = req.body.location)
-    : (document["location"] = "Not Provided");
+  typeof req.body.nickName !== "undefined" &&
+    (document["nickName"] = req.body.nickName);
+  typeof req.body.age !== "undefined" && (document["age"] = req.body.age);
+  typeof req.body.location !== "undefined" &&
+    (document["location"] = req.body.location);
   //if no value was sent in req
   if (Object.keys(document).length === 0) {
     res.status(400).send("Data to update needs to be provided");
