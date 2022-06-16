@@ -1,14 +1,14 @@
 const express = require("express");
 
-const contactController = require("../controllers/contact.js");
+const contactController = require("../controllers/contacts.js");
 
 const router = express.Router();
 
-router.get("/", contactController.Data);
+router.get("/", contactController.getData);
 
-router.get("/:id", contactController.DataById);
+router.get("/:id", contactController.getDataById);
 
-router.post("/", contactController.addContact);
+router.post("/", contactController.insertContact);
 
 router.put("/:id", contactController.updateContact);
 

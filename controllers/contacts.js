@@ -10,6 +10,13 @@ function isValidObjectId(id) {
 }
 
 const getData = async (req, res, next) => {
+  /*
+
+  #swagger.description = "Returns all contacts from the database"
+
+
+*/
+
   const result = await mongodb.getDb().db().collection("contacts").find();
   result.toArray().then((lists) => {
     res.setHeader("Content-Type", "application/json");
@@ -18,6 +25,12 @@ const getData = async (req, res, next) => {
 };
 
 const getDataById = async (req, res, next) => {
+  /*
+
+#swagger.description = "Returns a contact from the database using specified id"
+
+
+*/
   const id = req.params.id;
   if (isValidObjectId(id)) {
     const result = await mongodb
@@ -31,41 +44,55 @@ const getDataById = async (req, res, next) => {
       res.status(200).json(result);
     }
   } else {
-    res.send("Contact Not Found");
+    res.status(400).send("Contact Not Found");
   }
 };
 
 const insertContact = async (req, res) => {
-  if (
-    typeof req.body.firstName !== "undefined" &&
-    typeof req.body.lastName !== "undefined" &&
-    typeof req.body.email !== "undefined" &&
-    typeof req.body.favoriteColor !== "undefined" &&
-    typeof req.body.birthday !== "undefined"
-  ) {
-    const document = {};
-    document["firstName"] = req.body.firstName;
-    document["lastName"] = req.body.lastName;
-    document["email"] = req.body.email;
-    document["favoriteColor"] = req.body.favoriteColor;
-    document["birthday"] = req.body.birthday;
+  /*
 
-    try {
-      const result = await mongodb
-        .getDb()
-        .db()
-        .collection("contacts")
-        .insertOne(document);
-      res.send(result.insertedId);
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
+#swagger.description = "Inserts a new contact into the database"
+
+
+*/
+
+  const document = {};
+
+  //set only receibed values to be updated
+  typeof req.body.firstName !== "undefined" &&
+    (document["firstName"] = req.body.firstName);
+  typeof req.body.lastName !== "undefined" &&
+    (document["lastName"] = req.body.lastName);
+  typeof req.body.email !== "undefined" && (document["email"] = req.body.email);
+  typeof req.body.favoriteColor !== "undefined" &&
+    (document["favoriteColor"] = req.body.favoriteColor);
+  typeof req.body.birthday !== "undefined" &&
+    (document["birthday"] = req.body.birthday);
+
+  //if no value was sent in req
+  if (Object.keys(document).length === 0) {
     res.status(400).send("All fields are required");
+    return;
+  }
+  try {
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection("contacts")
+      .insertOne(document);
+    res.send(result.insertedId);
+  } catch (error) {
+    console.log(error);
   }
 };
 
 const updateContact = async (req, res) => {
+  /*
+
+#swagger.description = "Updates a contact that exists in the database by id"
+
+
+*/
   const document = {};
 
   //set only receibed values to be updated
@@ -107,6 +134,12 @@ const updateContact = async (req, res) => {
 };
 
 const deleteDocById = async (req, res, next) => {
+  /*
+
+#swagger.description = "Deletes a contact from the database using specified id"
+
+
+*/
   const id = req.params.id;
   if (isValidObjectId(id)) {
     const result = await mongodb
@@ -120,12 +153,12 @@ const deleteDocById = async (req, res, next) => {
       res.send("Document was deleted successfully");
     }
   } else {
-    res.send("Contact Not Found");
+    res.status(400).send("Contact Not Found");
   }
 };
 
-module.exports.Data = getData;
-module.exports.DataById = getDataById;
-module.exports.addContact = insertContact;
+module.exports.getData = getData;
+module.exports.getDataById = getDataById;
+module.exports.insertContact = insertContact;
 module.exports.updateContact = updateContact;
 module.exports.deleteDocById = deleteDocById;
