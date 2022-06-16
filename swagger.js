@@ -6,8 +6,8 @@ const doc = {
     description:
       "This is the API documentation for the Contacts API application",
   },
-  host: "https://cse341-personal-assignment1.herokuapp.com",
-  schemes: ["http"],
+  host: "cse341-personal-assignment1.herokuapp.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./routes/swagger-output.json";
